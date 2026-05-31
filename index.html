@@ -1,0 +1,81 @@
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        سامانه هنرستان شهید عباس پور
+    </title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+        <h1>
+            ورود یا ثبت نام دانش آموزان هنرستان شهید عباس پور
+        </h1>
+
+        <form
+        action="register.php"
+        method="POST"
+        onsubmit="return validateForm()">
+
+            <input
+            type="text"
+            name="fullname"
+            id="fullname"
+            placeholder="نام و نام خانوادگی">
+
+            <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="ایمیل">
+
+            <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="شماره تلفن">
+
+            <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="رمز عبور">
+
+            <button type="submit">
+                ثبت نام
+            </button>
+
+        </form>
+		<br>
+
+        <form action="login.php" method="POST">
+
+            <input
+            type="email"
+            name="email"
+            placeholder="ایمیل ورود">
+
+            <input
+            type="password"
+            name="password"
+            placeholder="رمز ورود">
+
+            <button type="submit">
+                ورود
+            </button>
+
+        </form>
+
+        <div class="message" id="message"></div>
+
+    </div>
+	<script type="module" src="app.js"></script>
+
+</body>
+</html>
