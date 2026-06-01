@@ -15,7 +15,8 @@ import {
   getFirestore,
   doc,
   setDoc,
-  getDoc
+  getDocs,
+  collection
 
 }
 from "https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js";
@@ -50,34 +51,97 @@ getAuth(app);
 const db =
 getFirestore(app);
 
+window.showRegister = function(){
+
+  document.getElementById("formArea")
+  .innerHTML = `
+
+  <input
+  type="text"
+  id="username"
+  placeholder="نام کاربری"
+  >
+
+  <input
+  type="email"
+  id="email"
+  placeholder="ایمیل"
+  >
+
+  <input
+  type="text"
+  id="phone"
+  placeholder="شماره تلفن"
+  >
+
+  <input
+  type="password"
+  id="password"
+  placeholder="رمز عبور"
+  >
+
+  <button onclick="register()">
+    ثبت نام
+  </button>
+
+  `;
+
+}
+
+window.showLogin = function(){
+
+  document.getElementById("formArea")
+  .innerHTML = `
+
+  <input
+  type="text"
+  id="loginUsername"
+  placeholder="نام کاربری"
+  >
+
+  <input
+  type="password"
+  id="loginPassword"
+  placeholder="رمز عبور"
+  >
+
+  <button onclick="login()">
+    ورود
+  </button>
+
+  `;
+
+}
+
 window.register = async function(){
 
-  var fullname =
-  document.getElementById("fullname").value;
+  let username =
+  document.getElementById("username").value;
 
-  var email =
+  let email =
   document.getElementById("email").value;
 
-  var phone =
+  let phone =
   document.getElementById("phone").value;
 
-  var password =
+  let password =
   document.getElementById("password").value;
 
-  var message =
+  let message =
   document.getElementById("message");
 
   if(
-    fullname === "" ||
+    username === "" ||
     email === "" ||
     phone === "" ||
     password === ""
   ){
 
     message.innerHTML =
-    "تمام فیلدها را پر کنید";
+    "تمام فیلدها الزامی هستند";
 
     return;
+
   }
 
   try{
@@ -97,7 +161,7 @@ window.register = async function(){
       ),
       {
 
-        fullname: fullname,
+        username: username,
         email: email,
         phone: phone
 
@@ -105,8 +169,8 @@ window.register = async function(){
     );
 
     localStorage.setItem(
-      "fullname",
-      fullname
+      "username",
+      username
     );
 
     showDashboard();
@@ -124,37 +188,55 @@ window.register = async function(){
 
 window.login = async function(){
 
-  var email =
-  document.getElementById("email").value;
+  let username =
+  document.getElementById("loginUsername").value;
 
-  var password =
-  document.getElementById("password").value;
+  let password =
+  document.getElementById("loginPassword").value;
 
-  var message =
+  let message =
   document.getElementById("message");
 
   try{
 
-    const userCredential =
+    const querySnapshot =
+    await getDocs(
+      collection(db, "students")
+    );
+
+    let foundEmail = "";
+
+    querySnapshot.forEach((doc) => {
+
+      if(
+        doc.data().username === username
+      ){
+
+        foundEmail =
+        doc.data().email;
+
+      }
+
+    });
+
+    if(foundEmail === ""){
+
+      message.innerHTML =
+      "نام کاربری یافت نشد";
+
+      return;
+
+    }
+
     await signInWithEmailAndPassword(
       auth,
-      email,
+      foundEmail,
       password
     );
 
-    const docRef =
-    doc(
-      db,
-      "students",
-      userCredential.user.uid
-    );
-
-    const docSnap =
-    await getDoc(docRef);
-
     localStorage.setItem(
-      "fullname",
-      docSnap.data().fullname
+      "username",
+      username
     );
 
     showDashboard();
@@ -164,43 +246,41 @@ window.login = async function(){
   catch(error){
 
     message.innerHTML =
-    "ایمیل یا رمز اشتباه است";
-	
+    "رمز عبور اشتباه است";
 
   }
 
 }
 
-function showDashboard() {
+function showDashboard(){
 
-  let fullname =
-  localStorage.getItem("fullname");
+  let username =
+  localStorage.getItem("username");
 
   document.body.innerHTML = `
 
   <div class="container">
 
     <h1>
-      خوش آمدی ${fullname}
+      خوش آمدی ${username}
     </h1>
 
     <p style="
-      text-align:center;
-      margin-bottom:20px;
+    text-align:center;
+    margin-bottom:20px;
     ">
+
       برنامه امتحانی پایان ترم شما
       به شرح ذیل است
+
     </p>
 
     <img
-      src="./exam.jpg"
-      alt="برنامه امتحانی"
-      style="
-        width:100%;
-        border-radius:15px;
-        margin-top:20px;
-      "
-    >
+    src="./exam.jpg"
+    style="
+    width:100%;
+    border-radius:15px;
+    ">
 
   </div>
 
