@@ -171,9 +171,9 @@ window.login = async function(){
 
 }
 
-function showDashboard(){
+function showDashboard() {
 
-  var fullname =
+  let fullname =
   localStorage.getItem("fullname");
 
   document.body.innerHTML = `
@@ -184,23 +184,23 @@ function showDashboard(){
       خوش آمدی ${fullname}
     </h1>
 
-    <p
-    style="
-    text-align:center;
-    margin-bottom:20px;
+    <p style="
+      text-align:center;
+      margin-bottom:20px;
     ">
       برنامه امتحانی پایان ترم شما
       به شرح ذیل است
     </p>
 
     <img
-src="./exam.jpg"
-alt="برنامه امتحانی"
-style="
-width:100%;
-border-radius:15px;
-margin-top:20px;
-">
+      src="./exam.jpg"
+      alt="برنامه امتحانی"
+      style="
+        width:100%;
+        border-radius:15px;
+        margin-top:20px;
+      "
+    >
 
   </div>
 
