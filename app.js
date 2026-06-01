@@ -194,11 +194,13 @@ function showDashboard(){
     </p>
 
     <img
-    src="exam.jpg"
-    style="
-    width:100%;
-    border-radius:15px;
-    ">
+src="./exam.jpg"
+alt="برنامه امتحانی"
+style="
+width:100%;
+border-radius:15px;
+margin-top:20px;
+">
 
   </div>
 
