@@ -285,5 +285,6 @@ function showDashboard(){
   </div>
 
   `;
+  alert("app.js loaded");
 
 }
