@@ -4,13 +4,15 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
   <title>
     سامانه هنرستان شهید عباس پور
   </title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+  href="style.css">
 
 </head>
 
@@ -19,47 +21,30 @@
   <div class="container">
 
     <h1>
-      ورود یا ثبت نام دانش آموزان
+      سامانه دانش آموزان
       هنرستان شهید عباس پور
     </h1>
 
-    <input
-      type="text"
-      id="fullname"
-      placeholder="نام و نام خانوادگی"
-    >
+    <div id="mainButtons">
 
-    <input
-      type="email"
-      id="email"
-      placeholder="ایمیل"
-    >
+      <button onclick="showRegister()">
+        ثبت نام
+      </button>
 
-    <input
-      type="text"
-      id="phone"
-      placeholder="شماره تلفن"
-    >
+      <button onclick="showLogin()">
+        ورود
+      </button>
 
-    <input
-      type="password"
-      id="password"
-      placeholder="رمز عبور"
-    >
+    </div>
 
-    <button onclick="register()">
-      ثبت نام
-    </button>
-
-    <button onclick="login()">
-      ورود
-    </button>
+    <div id="formArea"></div>
 
     <div id="message"></div>
 
   </div>
 
-  <script type="module" src="app.js"></script>
+  <script type="module"
+  src="app.js"></script>
 
 </body>
 </html>
