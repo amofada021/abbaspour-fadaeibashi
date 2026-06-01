@@ -52,19 +52,19 @@ getFirestore(app);
 
 window.register = async function(){
 
-  let fullname =
+  var fullname =
   document.getElementById("fullname").value;
 
-  let email =
+  var email =
   document.getElementById("email").value;
 
-  let phone =
+  var phone =
   document.getElementById("phone").value;
 
-  let password =
+  var password =
   document.getElementById("password").value;
 
-  let message =
+  var message =
   document.getElementById("message");
 
   if(
@@ -124,13 +124,13 @@ window.register = async function(){
 
 window.login = async function(){
 
-  let email =
+  var email =
   document.getElementById("email").value;
 
-  let password =
+  var password =
   document.getElementById("password").value;
 
-  let message =
+  var message =
   document.getElementById("message");
 
   try{
@@ -165,6 +165,7 @@ window.login = async function(){
 
     message.innerHTML =
     "ایمیل یا رمز اشتباه است";
+	
 
   }
 
@@ -172,7 +173,7 @@ window.login = async function(){
 
 function showDashboard(){
 
-  let fullname =
+  var fullname =
   localStorage.getItem("fullname");
 
   document.body.innerHTML = `
@@ -193,7 +194,7 @@ function showDashboard(){
     </p>
 
     <img
-    src="images/exam.jpg"
+    src="exam.jpg"
     style="
     width:100%;
     border-radius:15px;
